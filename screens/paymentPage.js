@@ -44,10 +44,6 @@ export default PaymentPage = () => {
             behavior="padding"
         >
             <Text style={styles.title}>Payment</Text>
-            <Text style={styles.title}
-                value = {payableAmount}
-            />
-
             <View style={styles.inputContainer}>
                 <TextInput style={styles.input} 
                     placeholder="Enter Payment Amount" 
