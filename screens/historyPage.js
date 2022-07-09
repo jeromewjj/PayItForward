@@ -2,8 +2,7 @@ import React from 'react';
 import { Button } from '@ui-kitten/components';
 import { useNavigation } from "@react-navigation/native";
 import { useTailwind } from 'tailwind-rn'
-import { StyleSheet, Text, View, FlatList } from 'react-native';
-
+import { StyleSheet, Text, View, FlatList, SectionList, StatusBar } from 'react-native';
 
 export default HistoryPage = () => {
 
@@ -36,74 +35,73 @@ export default HistoryPage = () => {
     );
 
     // Temp data
+    const stateGroupByDate =  [
+        {
+            title: "9 Jul 2022",
+            data: [
+                {
+                    "status" : "Expenses",
+                    "description" : "Hougang Wanton Noodles",
+                    "value" : "$3.50",
+                },
+    
+                {
+                    "status" : "Benefits",
+                    "description" : "From community",
+                    "value" : "$5.00"
+                },
+            ]
+        },
 
-    var state = {
-        data:[
-            {
-                "status" : "Expenses",
-                "description" : "Hougang Wanton Noodles",
-                "value" : "$3.50",
-                "Date" : "9/7/2022"
-            },
+        {
+            title: "5 Jul 2022",
+            data: [
+                {
+                    "status" : "Expenses",
+                    "description" : "Groceries at JMart Anchorvale Link",
+                    "value" : "$10.95",
+                },
+            ]
+        },
 
-            {
-                "status" : "Benefits",
-                "description" : "From community",
-                "value" : "$5.00",
-                "Date" : "9/7/2022"
-            },
+        {
+            title: "4 Jul 2022",
+            data: [
+                {
+                    "status" : "Donation",
+                    "description" : "PayItForward",
+                    "value" : "$5.05",
+                },
+            ]
+        },
 
-            {
-                "status" : "Expenses",
-                "description" : "Groceries at JMart Anchorvale Link",
-                "value" : "$10.95",
-                "Date" : "5/7/2022"
-            },
+        {
+            title: "1 Jul 2022",
+            data: [
+                {
+                    "status" : "Expenses",
+                    "description" : "Groceries at JMart Anchorvale Link",
+                    "value" : "$50.00",
+                },
+            ]
+        },
 
-            {
-                "status" : "Donation",
-                "description" : "PayItForward",
-                "value" : "$5.05",
-                "Date" : "4/7/2022"
-            },
-
-            {
-                "status" : "Expenses",
-                "description" : "Groceries at JMart Anchorvale Link",
-                "value" : "$15.00",
-                "Date" : "3/7/2022"
-            },
-
-            {
-                "status" : "Expenses",
-                "description" : "Groceries at JMart Anchorvale Link",
-                "value" : "$50.00",
-                "Date" : "3/7/2022"
-            },
-
-            {
-                "status" : "Donation",
-                "description" : "PayItForward",
-                "value" : "$50.00",
-                "Date" : "1/7/2022"
-            },
-
-            {
-                "status" : "Expenses",
-                "description" : "Groceries at JMart Anchorvale Link",
-                "value" : "$50.00",
-                "Date" : "1/7/2022"
-            }
-        ]
-    }
+    ]
     
     return (
         <View style={styles.container}>
-            <FlatList
+            {/* <FlatList
             style={{flex:1}}
             data={state.data}
             renderItem={renderItem}
+            /> */}
+
+            <SectionList
+                sections={stateGroupByDate}
+                renderItem={renderItem}
+                renderSectionHeader={({section}) => <Text style={styles.section_style}>{section.title}</Text>}
             />
+
             <Button style={styles.backButton} onPress={() => redirectToMainPage()}>BACK</Button>
       </View>
     );
@@ -134,5 +132,35 @@ const styles = StyleSheet.create({
         flex:1,
         flexDirection:"row",
         borderRadius:5
+      },
+
+      container_style: {
+        flex: 1,
+        marginTop: StatusBar.currentHeight || 0,
+      },
+
+      item_style: {
+        backgroundColor: '#B591FF',
+        padding: 20,
+        marginVertical: 8,
+        marginHorizontal: 16,
+        
+      },
+      
+      header: {
+        textAlign: 'center',
+        backgroundColor: '#B2C2D2',
+        padding: 20,
+        fontSize: 20,
+       
+      },
+
+      section_style: {
+        textAlign: 'left',
+        fontWeight:"bold",
+        backgroundColor: 'transparent',
+        padding: 20,
+        fontSize: 20,
+
       }
 })
