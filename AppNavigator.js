@@ -14,7 +14,7 @@ import HistoryPage from "./screens/historyPage";
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
-const HomeNavigator = () => {
+export const HomeNavigator = () => {
     return(
         <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Login" component={LoginPage} />
@@ -31,7 +31,8 @@ export const AppNavigator = () => {
     return(
         <NavigationContainer>
             <Drawer.Navigator initialRouteName="Login" screenOptions={{ headerShown: true }}>
-                <Drawer.Screen name="Logout" component={LoginPage} />
+                <Drawer.Screen name="Login" component={LoginPage} />
+                <Drawer.Screen name="Register" component={RegistrationPage} />
                 <Drawer.Screen name="HistoryPage" component={HistoryPage} />
                 <Drawer.Screen name="MainPage" component={MainPage} />
                 <Drawer.Screen name="Payment" component={PaymentPage} />
