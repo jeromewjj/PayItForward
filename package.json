@@ -24,9 +24,11 @@
     "react-native-reanimated": "~2.8.0",
     "react-native-safe-area-context": "^4.3.1",
     "react-native-ui-kitten": "^4.4.1",
+    "react-native-vega-scroll-list": "^1.0.0",
     "react-native-web": "0.17.7",
     "react-navigation": "^4.4.4",
     "react-navigation-stack": "^2.10.4",
+    "tailwind-rn": "^4.2.0",
     "react-radio-buttons": "^1.2.2"
   },
   "devDependencies": {
