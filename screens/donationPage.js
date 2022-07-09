@@ -14,9 +14,16 @@ export default DonationPage = ({ navigation }) => {
 
     const [modal1open, setmodal1open]=useState(false);
     const [modal2open, setmodal2open]=useState(false);
+    const [modal3open, setmodal3open]=useState(false);
     const [userOption, setUserOption] = useState(null);
     const BackHandler = () => navigation.navigate('MainPage');
-    const DonateHandler = () => setmodal1open(!modal1open);
+    const DonateHandler = () => {
+        if (userOption==null){
+            setmodal3open(!modal3open);
+    }
+    else {
+        setmodal1open(!modal1open);
+    }}
     const ThankyouHandler =() => setmodal2open(!modal2open);
     
     const DoubleHandler = () => {
@@ -29,6 +36,8 @@ export default DonationPage = ({ navigation }) => {
     return (   
     <View>
         <Text category='h1' style={styles.header} >Donation</Text>
+
+        <Text style={styles.text}>Kindly choose the amount you would like to donate:</Text>
 
     <View style={styles.align}>
         {data.map((item) => {
@@ -78,6 +87,17 @@ export default DonationPage = ({ navigation }) => {
             </View>
         </Modal>
 
+        <Modal transparent visible={modal3open}> 
+            <View style={styles.ModalBackground}>
+                    <View style={styles.Modalcontent}>
+                    <Text style={{fontWeight:'bold',fontSize:18}}>Please select an amount first.</Text>
+                    <Pressable style={styles.backbutton} onPress={()=>setmodal3open(!modal3open)}>
+                        <Text style={styles.bottwobuttontext}>BACK</Text>
+                    </Pressable>
+                    </View>
+                </View>
+        </Modal>
+
         <Pressable style={styles.bottwobutton} onPress={DonateHandler}>
             <Text style={styles.bottwobuttontext}>{"DONATE"}</Text>
         </Pressable>
@@ -93,6 +113,12 @@ export default DonationPage = ({ navigation }) => {
         color:'white',
         fontSize:30,
         marginBottom:20
+    },
+    text:{
+        textAlign: 'center',
+        fontWeight:'bold',
+        fontSize:20,
+        marginBottom:15
     },
     option:{
         textAlign:'center',

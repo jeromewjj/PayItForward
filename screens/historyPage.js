@@ -1,13 +1,11 @@
 import React from 'react';
 import { Button } from '@ui-kitten/components';
 import { useNavigation } from "@react-navigation/native";
-import { useTailwind } from 'tailwind-rn'
 import { StyleSheet, Text, View, FlatList, SectionList, StatusBar } from 'react-native';
 
 export default HistoryPage = () => {
 
     const navigation = useNavigation();
-    const tailwind = useTailwind();
 
     const redirectToMainPage = () => {
         navigation.navigate("MainPage");
