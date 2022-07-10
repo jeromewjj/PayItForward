@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, FlatList, Alert,TouchableWithoutFeedback, Button, Pressable, Modal} from 'react-native';
+import { StyleSheet, View, FlatList, Alert,TouchableWithoutFeedback, Button, Pressable, Modal, TouchableOpacity} from 'react-native';
 import { Layout, Text } from '@ui-kitten/components';
 import { RadioButton } from 'react-radio-buttons';
 
@@ -41,35 +41,35 @@ export default DonationPage = ({ navigation }) => {
 
     <View style={styles.align}>
         {data.map((item) => {
-        return (
-            <Pressable
+        return (            
+            <TouchableOpacity
             style={ 
               item.value === userOption ? styles.selected : styles.unselected
             } 
-            onPress={() => setUserOption(item.value)}
+            onPress={() => setUserOption(item.value)} activeOpacity={0.5}
           >
             <Text key={item.value} style={styles.option}> {item.value}</Text>
-          </Pressable>
+          </TouchableOpacity>
         );
         })}
     </View>
     <View style={styles.bottwo}>
-        <Pressable style={styles.bottwobutton} onPress={BackHandler}>
+        <TouchableOpacity style={styles.bottwobutton} onPress={BackHandler} activeOpacity={0.5}>
             <Text style={styles.bottwobuttontext}>{"BACK"}</Text>
-        </Pressable>
+        </TouchableOpacity>
 
         <Modal transparent visible={modal1open} >
             <View style={styles.ModalBackground}>
             <View style={styles.Modalcontent}>
             <Text style={{fontWeight:'bold',fontSize:18}}>{"Confirm your donation of "+userOption+ "?"}</Text>
              <View style={styles.bottwo}>
-                <Pressable style={styles.yesnobutton} onPress={DonateHandler}>
+                <TouchableOpacity style={styles.yesnobutton} onPress={DonateHandler} activeOpacity={0.5} >
                 <Text style={styles.bottwobuttontext}>No</Text>
-                </Pressable>
+                </TouchableOpacity>
 
-                <Pressable style={styles.yesnobutton} onPress={ThankyouHandler}>
+                <TouchableOpacity style={styles.yesnobutton} onPress={ThankyouHandler} activeOpacity={0.5}>
                 <Text style={styles.bottwobuttontext}>Yes</Text>
-                </Pressable>
+                </TouchableOpacity>
              </View> 
 
             </View>
@@ -80,9 +80,9 @@ export default DonationPage = ({ navigation }) => {
             <View style={styles.ModalBackground}>
                 <View style={styles.Modalcontent}>
                 <Text style={{fontWeight:'bold',fontSize:18}}>Thank you for donating!</Text>
-                <Pressable style={styles.backbutton} onPress={DoubleHandler}>
+                <TouchableOpacity style={styles.backbutton} onPress={DoubleHandler} activeOpacity={0.5}>
                     <Text style={styles.bottwobuttontext}>BACK</Text>
-                </Pressable>
+                </TouchableOpacity>
                 </View>
             </View>
         </Modal>
@@ -91,16 +91,16 @@ export default DonationPage = ({ navigation }) => {
             <View style={styles.ModalBackground}>
                     <View style={styles.Modalcontent}>
                     <Text style={{fontWeight:'bold',fontSize:18}}>Please select an amount first.</Text>
-                    <Pressable style={styles.backbutton} onPress={()=>setmodal3open(!modal3open)}>
+                    <TouchableOpacity style={styles.backbutton} onPress={()=>setmodal3open(!modal3open)}>
                         <Text style={styles.bottwobuttontext}>BACK</Text>
-                    </Pressable>
+                    </TouchableOpacity>
                     </View>
                 </View>
         </Modal>
 
-        <Pressable style={styles.bottwobutton} onPress={DonateHandler}>
+        <TouchableOpacity style={styles.bottwobutton} onPress={DonateHandler} activeOpacity={0.5}> 
             <Text style={styles.bottwobuttontext}>{"DONATE"}</Text>
-        </Pressable>
+        </TouchableOpacity>
     </View>
     </View>
     );
@@ -111,13 +111,13 @@ export default DonationPage = ({ navigation }) => {
         textAlign: 'center',
         backgroundColor:'red',
         color:'white',
-        fontSize:30,
+        fontSize:25,
         marginBottom:20
     },
     text:{
         textAlign: 'center',
         fontWeight:'bold',
-        fontSize:20,
+        fontSize:18,
         marginBottom:15
     },
     option:{
@@ -137,15 +137,15 @@ export default DonationPage = ({ navigation }) => {
     },
     bottwobutton:{
         backgroundColor:'red',
-        padding:10,
+        padding:7,
         margin:50,
-        marginTop:75,
+        marginTop:40,
         borderRadius:20,
         flex:1,
         alignItems:'center'
     },
     bottwobuttontext:{
-        fontSize:20,
+        fontSize:18,
         color:'white',
         fontWeight:'bold',
     },
@@ -181,11 +181,12 @@ export default DonationPage = ({ navigation }) => {
     },
     yesnobutton:{
         backgroundColor:'red',
-        padding:20,
+        padding:10,
         margin:25,
+        marginTop:50,
         borderRadius:10,
         alignItems:'center',
-        justifyContent: 'center',
+        flex:1
     },
     backbutton:{
         backgroundColor:'red',
