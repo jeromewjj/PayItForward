@@ -37,7 +37,6 @@ export const AppNavigator = () => {
                 <Drawer.Screen name="MainPage" component={MainPage} />
                 <Drawer.Screen name="Payment" component={PaymentPage} />
                 <Drawer.Screen name="Donation" component={DonationPage} />
-                <Drawer.Screen name="History" component={HistoryPage} />
             </Drawer.Navigator>
         </NavigationContainer>
     )
