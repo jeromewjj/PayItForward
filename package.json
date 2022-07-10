@@ -7,7 +7,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "dev:tailwind": "concurrently \"tailwindcss --input input.css --output tailwind.css --no-autoprefixer --watch\" \"tailwind-rn --watch\" "
   },
   "dependencies": {
     "@eva-design/eva": "^2.1.1",
@@ -30,8 +31,8 @@
     "react-native-web": "0.17.7",
     "react-navigation": "^4.4.4",
     "react-navigation-stack": "^2.10.4",
-    "tailwind-rn": "^4.2.0",
-    "react-radio-buttons": "^1.2.2"
+    "react-radio-buttons": "^1.2.2",
+    "tailwind-rn": "^4.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
