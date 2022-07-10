@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/core';
 import { Layout } from '@ui-kitten/components';
 import { updateDonation } from '../firebase';
-import { Alert, KeyboardAvoidingView, StyleSheet, ScrollView, Text, TextInput, TouchableOpacity, View, Image } from 'react-native';
+import { Alert, KeyboardAvoidingView, StyleSheet, ScrollView, Text, TextInput, TouchableOpacity, View, Image} from 'react-native';
 
 export default PaymentPage = () => {
-    const [totalAmount, setTotalAmount] = useState("");
-    const payableAmount = 25.90;
+    const [totalAmount, setTotalAmount] = useState("$23.20");
 
     const navigation = useNavigation();
 
@@ -14,9 +13,11 @@ export default PaymentPage = () => {
         navigation.navigate("MainPage");
     }
 
+
     const pay = () => {
         Alert.alert(
-            "Confirm Payement?",
+            "Confirm Payement",
+            "Are you sure you want to pay?",
             [
                 {
                     text: "Confirm",
@@ -33,7 +34,6 @@ export default PaymentPage = () => {
     }
 
     const handlePayment = () => {
-        updateDonation(totalAmount);
         navigation.navigate("MainPage");
     }
 
@@ -43,16 +43,15 @@ export default PaymentPage = () => {
             style={styles.container}
             behavior="padding"
         >
-            <Text style={styles.title}>Payment</Text>
-            <View style={styles.inputContainer}>
-                <TextInput style={styles.input} 
-                    placeholder="Enter Payment Amount" 
-                    value={totalAmount} 
-                    keyboardType = 'number-pad'
-                    onChangeText={(text) => setTotalAmount(text)} />
-                    
-            </View>
+            <Text style={styles.title}>Total Amount</Text>
+            <Text style={styles.title}>{totalAmount}</Text>
             <View style={styles.buttonContainer}>
+            <TouchableOpacity
+                onPress={() => setTotalAmount('$24.00')}
+                style={[styles.button, styles.buttonOutline]}
+            >
+                <Text style={styles.buttonOutlineText}>Round Up</Text>
+            </TouchableOpacity>
             <TouchableOpacity
                 onPress={pay}
                 style={styles.button}
@@ -77,24 +76,15 @@ export default PaymentPage = () => {
       justifyContent: 'center',
       alignItems: 'center',
     },
-    inputContainer: {
-      width: '80%'
-    },
-    input: {
-      backgroundColor: 'white',
-      paddingHorizontal: 15,
-      paddingVertical: 10,
-      borderRadius: 10,
-      marginTop: 5,
-    },
     buttonContainer: {
       width: '60%',
       justifyContent: 'center',
       alignItems: 'center',
-      marginTop: 40,
+      marginTop: 280,
     },
     button: {
       backgroundColor: '#ED1A3B',
+      marginTop: 5,
       width: '100%',
       padding: 15,
       borderRadius: 10,
